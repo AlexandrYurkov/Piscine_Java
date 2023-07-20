@@ -96,6 +96,7 @@ public class TransactionsService {
         }
         return count;
     }
+//    setTransactionsList должен быть private, для проверок оставлен как public
     public void setTransactionsList(Transaction transaction){
         this.transactionsList.addTransaction(transaction);
     }
@@ -107,5 +108,9 @@ public class TransactionsService {
         for (int i = 0; i < transactions.length; i++)
             result[i] = transactions[i].getUuid();
         return result;
+    }
+
+    public void deleteTransaction(String uuid){
+        this.transactionsList.removeTransaction(uuid);
     }
 }

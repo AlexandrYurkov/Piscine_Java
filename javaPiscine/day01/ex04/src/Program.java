@@ -81,7 +81,6 @@ public class Program {
             System.out.println(e.getMessage());
         }
 
-
         System.out.println(Arrays.toString(service.listTransactions(1)));
 
         System.out.println(service.usersBalance(3));
@@ -89,7 +88,8 @@ public class Program {
         System.out.println(Arrays.toString(service.toArrayUUIDTransactions()));
         System.out.println("------------------------------");
         System.out.println(Arrays.toString(service.badTransactions()));
-
-
+        service.deleteTransaction(test2.getUuid().toString());
+        System.out.println("------------------------------");
+        System.out.println(Arrays.toString(service.badTransactions()));
     }
 }

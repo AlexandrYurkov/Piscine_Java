@@ -110,7 +110,7 @@ public class TransactionsService {
         return result;
     }
 
-    public void deleteTransaction(String uuid){
-        this.transactionsList.removeTransaction(uuid);
+    public void deleteTransaction(String uuid, int userID){
+        this.transactionsList.removeTransaction(uuid, userID);
     }
 }

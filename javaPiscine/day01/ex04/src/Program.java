@@ -88,8 +88,10 @@ public class Program {
         System.out.println(Arrays.toString(service.toArrayUUIDTransactions()));
         System.out.println("------------------------------");
         System.out.println(Arrays.toString(service.badTransactions()));
-        service.deleteTransaction(test2.getUuid().toString());
+        System.out.println(service.badTransactions().length);
+        service.deleteTransaction(service.listTransactions(1)[0].getUuid().toString(), 1);
         System.out.println("------------------------------");
         System.out.println(Arrays.toString(service.badTransactions()));
+        System.out.println(service.badTransactions().length);
     }
 }

@@ -46,6 +46,34 @@ public class TransactionsLinkedList implements TransactionsList{
         }
 
     }
+
+
+
+    public void removeTransaction(String uuid, int userID) {
+        Node tmp = this.first;
+
+
+        while (tmp.getNext() != null){
+
+            if(tmp.getValue().getUuid().toString().equals(uuid) &&
+                    (tmp.getValue().getRecipient().getIdentifier() == userID ||
+                            tmp.getValue().getSender().getIdentifier() == userID)){
+                deleteNode(tmp);
+                size--;
+                return;
+            }
+            tmp = tmp.getNext();
+        }
+        if(tmp.getValue().getUuid().toString().equals(uuid) && tmp.getNext() == null
+                && (tmp.getValue().getRecipient().getIdentifier() == userID ||
+                        tmp.getValue().getSender().getIdentifier() == userID)){
+            deleteNode(tmp);
+            size--;
+        }else{
+            throw new TransactionsListNotFoundException("No such id found!");
+        }
+
+    }
     private void deleteNode(Node node) {
         if(node.getNext() == null && node.getPrevious()==null){
             this.last = null;

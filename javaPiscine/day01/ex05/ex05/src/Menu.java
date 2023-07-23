@@ -138,11 +138,12 @@ public class Menu {
         System.out.println("--------------------------------");
     }
 
-    public void deleteTransaction(){
+    public void deleteTransaction() throws IOException {
         System.out.println("Введите id пользователя и id перевода:");
-        Scanner scan = new Scanner(System.in);
-        int userID = scan.nextInt();
-        String uuid = scan.nextLine();
+        BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
+        String[] date = scan.readLine().split(" ");
+        int userID = Integer.parseInt(date[0]);
+        String uuid = date[1];
         String[] result = service.deleteTransaction(uuid, userID);
         System.out.println("Перевод To " + result[0] + "(id = " +
                 result[1] + ") " + result[2] + " удален");

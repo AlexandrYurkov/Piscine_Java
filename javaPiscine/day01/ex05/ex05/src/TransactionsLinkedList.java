@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class TransactionsLinkedList implements TransactionsList{
     private Node first;
     private Node last;
@@ -54,21 +56,11 @@ public class TransactionsLinkedList implements TransactionsList{
         String[] result = new String[3];
 
         while (tmp.getNext() != null){
-            System.out.println("===================================");
-            System.out.println(tmp.getValue().getUuid().toString() + " = " + uuid+ "\n + "
-                    + tmp.getValue().getRecipient().getIdentifier() + " + " + tmp.getValue().getSender().getIdentifier());
-            System.out.println(tmp.getValue().getUuid().toString().equals(uuid) &&
-                    (tmp.getValue().getRecipient().getIdentifier() == userID ||
-                            tmp.getValue().getSender().getIdentifier() == userID));
-            System.out.println("===================================");
-
             if(tmp.getValue().getUuid().toString().equals(uuid) &&
                     (tmp.getValue().getRecipient().getIdentifier() == userID ||
                             tmp.getValue().getSender().getIdentifier() == userID)){
                 User user = (tmp.getValue().getRecipient() == null) ? tmp.getValue().getSender()
                                 : tmp.getValue().getRecipient();
-                System.out.println(tmp);
-                System.out.println(user);
                 result[0] = user.getName();
                 result[1] = String.valueOf(user.getIdentifier());
                 result[2] = String.valueOf(tmp.getValue().getSumma());

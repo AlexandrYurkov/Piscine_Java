@@ -1,23 +1,12 @@
+//package ex03;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
+
 
 public class Program {
-    public static void downloadFile(URL url, String fileName) throws IOException {
-        try (InputStream in = url.openStream();
-             BufferedInputStream bis = new BufferedInputStream(in);
-             FileOutputStream fos = new FileOutputStream(fileName)) {
-
-            byte[] data = new byte[1024];
-            int count;
-            while ((count = bis.read(data, 0, 1024)) != -1) {
-                fos.write(data, 0, count);
-            }
-        }
-    }
 
     public static ArrayList<String> fileReader(File file) throws IOException {
         try (FileReader reader = new FileReader(file)) {
@@ -34,28 +23,10 @@ public class Program {
         }
     }
 
-    public static HashMap<Integer, URL> stringURL(ArrayList<String> src) throws MalformedURLException {
-        HashMap<Integer, URL> url = new HashMap<>();
-        for (String value : src) {
-            String[] s = value.split(" ");
-            URL uri = new URL(s[1]);
-            url.put(Integer.parseInt(s[0]), uri);
-        }
-        return url;
-    }
-
-    public static String fileName(String str) {
-        String[] name = str.split("/");
-        return name[name.length - 1];
-    }
-
-    public static void downloads(ArrayList<String> str) throws IOException {
-        HashMap<Integer, URL> list = stringURL(str);
-        for (URL value : list.values())
-            downloadFile(value, fileName(value.toString()));
-    }
-
     public static void main(String[] args) {
+//        int countThreads = Integer.parseInt(args[0].split("=")[1]);
+       int countThreads = 3;
+
         File file_urls = new File("src/files_urls.txt");
         ArrayList<String> str = new ArrayList<>();
         try {
@@ -64,8 +35,9 @@ public class Program {
             System.out.println(e.getMessage());
         }
         assert str != null;
+        DownloadsFile downloadsFile = new DownloadsFile(str, countThreads);
         try {
-            downloads(str);
+            downloadsFile.downloads();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

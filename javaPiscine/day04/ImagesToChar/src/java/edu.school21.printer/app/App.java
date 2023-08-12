@@ -1,6 +1,6 @@
-package edu.school21.printer.app;
+package src.java.edu.school21.printer.app;
 
-import edu.school21.printer.logic.Logic;
+import src.java.edu.school21.printer.logic.Logic;
 import java.io.IOException;
 
 public class App {

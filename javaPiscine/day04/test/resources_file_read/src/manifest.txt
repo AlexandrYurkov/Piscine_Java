@@ -1,0 +1,2 @@
+main-class: src.App
+path-class: target

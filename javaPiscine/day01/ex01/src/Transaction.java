@@ -68,13 +68,13 @@ public class Transaction {
             return false;
         }
         switch (getTrancCategory()){
-            case DEBIT -> {
+            case DEBIT : {
                 if(getSumma() < 0) {
                     System.err.println("Не верная сумма");
                     return false;
                 }
             }
-            case CREDIT -> {
+            case CREDIT : {
                 if(getSumma() > 0) {
                     System.err.println("Не верная сумма");
                     return false;

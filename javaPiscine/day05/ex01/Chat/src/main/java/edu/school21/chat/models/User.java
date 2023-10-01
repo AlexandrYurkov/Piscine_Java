@@ -1,0 +1,73 @@
+package edu.school21.chat.models;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class User {
+    private Integer idUser;
+    private final String login;
+    private final String password;
+    public ArrayList<ChatRoom> createChatRoom = new ArrayList<>();
+    public ArrayList<ChatRoom> ActiveChatRoom = new ArrayList<>();
+
+    public User(Integer idUser, String login, String password) {
+        this.idUser = idUser;
+        this.login = login;
+        this.password = password;
+    }
+
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public Boolean getPassword(String password) {
+        return this.password.equals(password);
+    }
+    public ArrayList<ChatRoom> getCreateChatRoom() {
+        return createChatRoom;
+    }
+
+    public void setCreateChatRoom(ChatRoom createChatRoom) {
+        this.createChatRoom.add(createChatRoom);
+    }
+
+    public ArrayList<ChatRoom> getActiveChatRoom() {
+        return ActiveChatRoom;
+    }
+
+    public void setActiveChatRoom(ChatRoom activeChatRoom) {
+        ActiveChatRoom.add(activeChatRoom);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(idUser, user.idUser) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(createChatRoom, user.createChatRoom) && Objects.equals(ActiveChatRoom, user.ActiveChatRoom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUser, login, password, createChatRoom, ActiveChatRoom);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser + "\n" +
+                "login='" + login + '\'' + "\n" +
+                "password='" + password + '\'' + "\n" +
+                "createChatRoom=" + createChatRoom + "\n" +
+                "ActiveChatRoom=" + ActiveChatRoom + "\n" +
+                '}';
+    }
+}
